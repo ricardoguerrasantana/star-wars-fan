@@ -10,6 +10,7 @@
     "@types/node": "^12.20.16",
     "@types/react": "^17.0.14",
     "@types/react-dom": "^17.0.9",
+    "debug": "^4.3.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
@@ -25,7 +26,80 @@
   "eslintConfig": {
     "extends": [
       "react-app",
-      "react-app/jest"
+      "react-app/jest",
+      "plugin:react/all",
+      "plugin:@typescript-eslint/recommended-requiring-type-checking"
+    ],
+    "parserOptions": {
+      "project": "./tsconfig.json"
+    },
+    "rules": {
+      "react/jsx-filename-extension": [
+        1,
+        {
+          "extensions": [
+            ".js",
+            ".jsx",
+            "ts",
+            "tsx"
+          ]
+        }
+      ],
+      "react/jsx-indent": [
+        1,
+        2,
+        {
+          "checkAttributes": true,
+          "indentLogicalExpressions": true
+        }
+      ],
+      "react/jsx-indent-props": [
+        1,
+        2
+      ],
+      "react/jsx-max-depth": [
+        1,
+        {
+          "max": 3
+        }
+      ],
+      "react/jsx-one-expression-per-line": [
+        1,
+        {
+          "allow": "single-child"
+        }
+      ],
+      "react/jsx-newline": [
+        1,
+        {
+          "prevent": true
+        }
+      ],
+      "react/jsx-curly-brace-presence": [
+        1,
+        {
+          "props": "never",
+          "children": "ignore"
+        }
+      ],
+      "react/jsx-max-props-per-line": [
+        1,
+        {
+          "maximum": 1,
+          "when": "multiline"
+        }
+      ],
+      "react/jsx-no-literals": "off",
+      "react/react-in-jsx-scope": "off",
+      "react/function-component-definition": "off"
+    },
+    "overrides": [
+      {
+        "files": [
+          "**/*.ts?(x)"
+        ],
+        "rules": {}
+      }
     ]
   },
   "browserslist": {
