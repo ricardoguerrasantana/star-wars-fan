@@ -1,0 +1,17 @@
+.container {
+  display: flex;
+  width: 100%;
+  color: white;
+  min-height: 100px;
+  justify-content: space-between;
+  align-items: center;
+  border: 2px solid white;
+  box-sizing: border-box;
+  margin: 5px;
+}
+
+.centerGroup {
+  display: flex;
+  flex-direction: row; 
+  align-items: center;
+}
