@@ -7,10 +7,10 @@
 import { memo } from 'react';
 
 // presentational component
-import { AppBar } from '../../../components';
+import { AppBar } from '../../generic';
 
 // types
-import type { AppBarPropsType } from '../../../components';
+import type { AppBarPropsType } from '../../generic';
 
 // constants
 import { APP } from '../../../utils/constants';
