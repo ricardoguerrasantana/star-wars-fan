@@ -34,11 +34,11 @@ function Dropdown({ bodyComponent, dropdownStyles, headerComponent, id, selected
   /** Controls whether the body is displayed or not. */
   const [displayBody , setDisplayBody] = useState<boolean>(false);
   
-  /** Controls whether body should be closed when external control 
-   * has been set up. */
+  /** Controls whether body should be open or closed when 
+   * external control has been set up. */
   useEffect(() => {
-    if (selectedDropdownId && selectedDropdownId !== id) {
-      setDisplayBody(false);
+    if (selectedDropdownId) {
+      setDisplayBody(selectedDropdownId === id ? true : false);
     }
   }, [selectedDropdownId, id]);
 

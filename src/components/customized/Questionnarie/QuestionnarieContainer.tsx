@@ -71,7 +71,7 @@ function QuestionnarieContainer() {
           header: styles.dropdownHeader
         },
         headerComponent,
-        id: "dropdown" + D.id,
+        id: D.id,
       },
       menuItem: {
         class: styles.menuItem,

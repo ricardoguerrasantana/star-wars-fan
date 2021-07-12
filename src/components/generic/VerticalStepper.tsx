@@ -31,9 +31,19 @@ function VerticalStepper({ accordionStyles, dropdownIds, menuStyles, stepperButt
   /** This state set up control to keep open just one of 
    * the Dropdowns at a time. */
   const [selectedDropdownId , setSelectedDropdownId] = useState<string>("");
+  log("selectedDropdownId", selectedDropdownId);
   
-  const accordionItems: AccordionItem[] = stepperItems.map((item, step) => {
-    // Adds state control to identify which Dropdown is selected.
+  /** Keeps track of active step */
+  const [step , setStep] = useState<number>(0);
+  log("step", step);
+
+  /** Assigns the respective Dropdown id when step is changed. */
+  useEffect(() => {
+    setSelectedDropdownId(dropdownIds[step]);
+  }, [step, dropdownIds]);
+  
+  /** Adds state control to identify which Dropdown is selected. */
+  const accordionItems = stepperItems.map((item) => {
     item.dropdown.selectedDropdownId = selectedDropdownId;
     item.dropdown.setSelectedDropdownId = setSelectedDropdownId;
     return item;
@@ -48,6 +58,7 @@ function VerticalStepper({ accordionStyles, dropdownIds, menuStyles, stepperButt
           buttonStyles={stepperStyles.buttons}
           buttonText={stepperButtonText}
           lastStep={accordionItems.length - 1}
+          setStep={setStep}
           step={step}
         >
           {item.dropdown.bodyComponent}
@@ -67,10 +78,9 @@ function VerticalStepper({ accordionStyles, dropdownIds, menuStyles, stepperButt
   );
 }
 
-
 /** StepBody component to be used by previously defined 
- * VerticalStepper component takes Dropdown Body and adds 
- * buttons for stepping control */
+ * VerticalStepper component. It takes Dropdown Body and 
+ * adds buttons for stepping control */
 
 type StepBodyProps = {
   children: ReactNode;
@@ -84,21 +94,39 @@ type StepBodyProps = {
     container: string;
     next: string;
   };
-  lastStep: number
-  step: number
+  lastStep: number;
+  setStep: (step: number) => void;
+  step: number;
 }
 
 // eslint-disable-next-line react/no-multi-comp
-function StepBody ({ children, buttonText , buttonStyles , lastStep, step }: StepBodyProps) {
+function StepBody ({ children, buttonText , buttonStyles , lastStep, step, setStep }: StepBodyProps) {
+  
+  function handleBackClick() {
+    setStep(step - 1);
+  }
+
+  function handleNextClick() {
+    setStep(step + 1);
+  }
+
   return (
     <>
       {children}
       <div className={buttonStyles.container}>
         {step !== 0 && 
-          <button className={buttonStyles.back} type="button">
+          <button 
+            className={buttonStyles.back} 
+            onClick={handleBackClick}
+            type="button"
+          >
             {buttonText.back}
           </button>}
-        <button className={buttonStyles.next} type="button">
+        <button 
+          className={buttonStyles.next} 
+          onClick={handleNextClick}
+          type="button"
+        >
           {step === lastStep ? buttonText.end : buttonText.next}
         </button>
       </div>
