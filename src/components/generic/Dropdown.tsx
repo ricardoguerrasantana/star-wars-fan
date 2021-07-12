@@ -16,34 +16,36 @@ export type Props = {
   };
   headerComponent: ReactNode;
   id: string;
-  displayedDropdown?: string;
-  setDisplayedDropdown?: (id: string) => void;
+  
+  selectedDropdownId?: string;
+  setSelectedDropdownId?: (id: string) => void;
 }
 
 /**  Dropdown generic component is compound of a header and a body 
  * boxes which should receive customized components. By default the 
  * body is hidden. When clicking the header it displays the body and 
  * hide it if clicked again. This Dropdown may transfer control to 
- * hide the body if displayedDropdown and setDisplayedDropdown props 
+ * hide the body if selectedDropdownId and setSelectedDropdownId props 
  * are defined from parent component as state managers. */
-function Dropdown({ bodyComponent, dropdownStyles, headerComponent, id, displayedDropdown , setDisplayedDropdown }: Props) {
+function Dropdown({ bodyComponent, dropdownStyles, headerComponent, id, selectedDropdownId , setSelectedDropdownId }: Props) {
   log('Rendering...');
 
-  // Internal state to determine whether dropdown body is displayed or not
+  /** Controls whether the body is displayed or not. */
   const [displayBody , setDisplayBody] = useState<boolean>(false);
   
+  /** Controls whether body should be closed when external control 
+   * has been set up. */
   useEffect(() => {
-    // Closes dropdown body if external control has been set up.
-    if (displayedDropdown && displayedDropdown !== id) {
+    if (selectedDropdownId && selectedDropdownId !== id) {
       setDisplayBody(false);
     }
-  }, [displayedDropdown, id]);
+  }, [selectedDropdownId, id]);
 
   function handleClick(): void {
-    if (setDisplayedDropdown) {
-      /** Identifies the displayed dropdown so parent component can target it 
-       * if external control has been set up. */
-      setDisplayedDropdown(id);
+    if (setSelectedDropdownId) {
+      /** External control has been set up. 
+       * Identifies this Dropdown in parent component. */
+      setSelectedDropdownId(id);
     }
     setDisplayBody(prevDisplayBody => !prevDisplayBody);
   }
