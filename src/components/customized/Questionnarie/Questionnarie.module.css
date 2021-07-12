@@ -10,6 +10,17 @@
   color:white;
 }
 
+.stepperButtonBack {}
+
+.stepperButtonContainer {
+  border: 2px solid white;
+  box-sizing: border-box;
+  padding: 5px;
+  width: 100%;
+}
+
+.stepperButtonNext {}
+
 .accordionContainer {
   display: flex;
   flex-direction: column;

@@ -4,6 +4,9 @@ import { memo } from 'react';
 // Generic components
 import { VerticalStepper } from '../../generic';
 
+// Constants
+import { STEPPER } from '../../../utils/constants';
+
 // Hard coded data
 import DATA from "../../../data/data.json"
 
@@ -23,7 +26,12 @@ function QuestionnarieContainer() {
   
   // Styles for VericalStepper component
   const stepperStyles = {
-    container: styles.stepperContainer
+    container: styles.stepperContainer,
+    buttons: {
+      back: styles.stepperButtonBack,
+      container: styles.stepperButtonContainer,
+      next: styles.stepperButtonNext,
+    },
   };
   
   // Styles for Accordion component
@@ -36,19 +44,33 @@ function QuestionnarieContainer() {
   const menuStyles = {
     container: styles.menuContainer
   };
+
+  // Text for stepper buttons inside the body of the dropdown
+  const stepperButtonText = {
+    back: STEPPER.BUTTONS.TEXT.BACK,
+    next: STEPPER.BUTTONS.TEXT.NEXT,
+    end: STEPPER.BUTTONS.TEXT.END,
+  };
   
-  const stepperItems = DATA.map((D) => {
-    const header = (<h1>{D.topic}</h1>);
-    const body = (<p>{D.correctAnswer}</p>);
+  const dropdownIds: string[] = [];
+  
+  const stepperItems = DATA.sort(() => (Math.random() > .5) ? 1 : -1).map((D) => {
+    /** Populates dropdowns array to keep track of Dropdown 
+     * components sequence. */
+    dropdownIds.push(D.id);
+
+    const headerComponent = (<h1>{D.topic}</h1>);
+    const bodyComponent = (<p>{D.correctAnswer}</p>);
+
     return {
       dropdown: {
-        bodyComponent: body,
+        bodyComponent,
         dropdownStyles: {
           body: styles.dropdownBody,
           container: styles.dropdownContainer,
           header: styles.dropdownHeader
         },
-        headerComponent: header,
+        headerComponent,
         id: "dropdown" + D.id,
       },
       menuItem: {
@@ -61,7 +83,9 @@ function QuestionnarieContainer() {
   return (
     <VerticalStepper 
       accordionStyles={accordionStyles}
+      dropdownIds={dropdownIds}
       menuStyles={menuStyles}
+      stepperButtonText={stepperButtonText}
       stepperItems={stepperItems}
       stepperStyles={stepperStyles}
     />
