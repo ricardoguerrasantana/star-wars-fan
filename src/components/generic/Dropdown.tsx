@@ -22,11 +22,12 @@ export type Props = {
 }
 
 /**  Dropdown generic component is compound of a header and a body 
- * boxes which should receive customized components. By default the 
- * body is hidden. When clicking the header it displays the body and 
- * hide it if clicked again. This Dropdown may transfer control to 
- * hide the body if selectedDropdownId and setSelectedDropdownId props 
- * are defined from parent component as state managers. */
+ * boxes which should receive customized components. By default 
+ * the body is hidden. When clicking the header it displays the 
+ * body and hide it if clicked again. This Dropdown may transfer 
+ * control to hide the body if selectedDropdownId and 
+ * setSelectedDropdownId props are defined from parent component 
+ * as state managers. */
 function Dropdown({ bodyComponent, dropdownStyles, headerComponent, id, selectedDropdownId , setSelectedDropdownId }: Props) {
   log('Rendering...');
 

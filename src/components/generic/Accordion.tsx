@@ -26,14 +26,15 @@ export type Props = {
   menuStyles: MenuTypes["menuStyles"];
 }
 
-/** Accordion generic component is a Menu generic component which items 
- * are Dropdown generic components. Data for rendering Dropdowns comes as 
- * an array via props. */
+/** Accordion generic component is a Menu generic component which 
+ * items are Dropdown generic components. Data for rendering 
+ * Dropdowns comes as an array via props. */
 function Accordion({ accordionStyles, accordionItems, menuStyles }: Props) {
   log('Rendering...');
 
-  /** Array of objects that contains Dropdown components and required data 
-   * by Menu to render its items. Each Menu item is a Dropdown. */
+  /** Array of objects that contains Dropdown components and 
+   * required data by Menu to render its items. Each Menu item is 
+   * a Dropdown. */
   const menuItems = accordionItems.map(({dropdown , menuItem}) =>{ 
     const component = (
       <Dropdown 

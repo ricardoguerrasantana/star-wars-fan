@@ -4,8 +4,8 @@ import { memo } from 'react';
 // Generic components
 import { VerticalStepper } from '../../generic';
 
-// constants
-import { DATA } from '../../../utils/constants';
+// Hard coded data
+import DATA from "../../../data/data.json"
 
 // Styles
 import styles from './Questionnarie.module.css';
@@ -20,8 +20,9 @@ log.log = console.log.bind(console);
  * VerticalStepper generic component... */
 function QuestionnarieContainer() {
   log('Rendering...');
-   // Styles for VericalStepper component
-   const stepperStyles = {
+  
+  // Styles for VericalStepper component
+  const stepperStyles = {
     container: styles.stepperContainer
   };
   
@@ -37,8 +38,8 @@ function QuestionnarieContainer() {
   };
   
   const stepperItems = DATA.map((D) => {
-    const header = (<h1>{D.ID}</h1>);
-    const body = (<p>{D.QUESTION}</p>);
+    const header = (<h1>{D.topic}</h1>);
+    const body = (<p>{D.correctAnswer}</p>);
     return {
       dropdown: {
         bodyComponent: body,
@@ -48,11 +49,11 @@ function QuestionnarieContainer() {
           header: styles.dropdownHeader
         },
         headerComponent: header,
-        id: D.ID,
+        id: "dropdown" + D.id,
       },
       menuItem: {
         class: styles.menuItem,
-        id: "menuItem" + D.ID,
+        id: "menuItem" + D.id,
       }
     }
   });

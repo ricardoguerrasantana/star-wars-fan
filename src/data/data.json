@@ -15,7 +15,7 @@
   {
       "topic": "Who played Princess Leia?",
       "type": "TextInput",
-      "answer": "carrie fisher",
+      "correctAnswer": "carrie fisher",
       "id": "dBkK7mayj9McFUW2WyNwk"
   },
   {
