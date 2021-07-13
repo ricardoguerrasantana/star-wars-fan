@@ -3,11 +3,11 @@ import { ReactNode } from 'react';
 
 // debugger
 import Debug from "debug";
-const log = Debug("App:VerticalStepper");
+const log = Debug("App:StepButtonsWapper");
 log.log = console.log.bind(console);
 
 // Prop types
-export type StepButtonsWapperProps = {
+export type Props = {
   children: ReactNode;
   buttonText: {
     back: string;
@@ -25,9 +25,10 @@ export type StepButtonsWapperProps = {
 }
 
 /** StepButtonsWapper helper component takes DropdownBody component 
- * that VerticalStepper receive and adds buttons for stepping 
+ * that VerticalStepper receive and adds buttons to it for stepping 
  * control. */
-function StepButtonsWapper ({ children, buttonText , buttonStyles , lastStep, step, setStep }: StepButtonsWapperProps) {
+function StepButtonsWapper ({ children, buttonText , buttonStyles , lastStep, step, setStep }: Props) {
+  log("Rendering...");
   
   function handleBackClick() {
     setStep(step - 1);

@@ -30,7 +30,7 @@ export type Props = {
  * items are Dropdown generic components. Data for rendering 
  * Dropdowns comes as an array via props. */
 function Accordion({ accordionStyles, accordionItems, menuStyles }: Props) {
-  log('Rendering...');
+  log("Rendering...");
 
   /** Array of objects that contains Dropdown components and 
    * required data by Menu to render its items. Each Menu item is 

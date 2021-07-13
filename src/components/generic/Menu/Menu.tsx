@@ -27,7 +27,7 @@ export type Props = {
  * These Items can be assigned handler functions from parent 
  * component. */
 function Menu({ items , menuStyles }: Props) {
-  log('Rendering...');
+  log("Rendering...");
   return (
     <div className={menuStyles.container} >
       {items.map((item) => {

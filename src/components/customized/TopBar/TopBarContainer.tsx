@@ -25,7 +25,7 @@ log.log = console.log.bind(console);
 
 
 function TopBarContainer() {
-  log('Rendering...');
+  log("Rendering...");
   
   // Left side group
   const leftGroup ={

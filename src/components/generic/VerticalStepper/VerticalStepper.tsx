@@ -8,8 +8,8 @@ import type { AccordionTypes , AccordionItem } from "../../generic";
 
 // Helper components
 import StepButtonsWapper from  "./StepButtonsWapper";
-// Types from helper component 
-import type { StepButtonsWapperProps } from "./StepButtonsWapper";
+// Types from helper components
+import type { Props as StepButtonsWapperProps } from "./StepButtonsWapper";
 
 // debugger
 import Debug from "debug";
@@ -32,7 +32,7 @@ export type Props = NewAccordionTypes & {
 
 /** VerticalStepper generic component ... */
 function VerticalStepper({ accordionStyles, dropdownIds, menuStyles, stepperButtonText, stepperItems, stepperStyles }: Props) {
-  log('Rendering...');
+  log("Rendering...");
   /** This state set up control to keep open just one of 
    * the Dropdowns at a time. */
   const [selectedDropdownId , setSelectedDropdownId] = useState<string>("");

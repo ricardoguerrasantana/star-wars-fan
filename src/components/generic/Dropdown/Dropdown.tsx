@@ -29,7 +29,7 @@ export type Props = {
  * setSelectedDropdownId props are defined from parent component 
  * as state managers. */
 function Dropdown({ bodyComponent, dropdownStyles, headerComponent, id, selectedDropdownId , setSelectedDropdownId }: Props) {
-  log('Rendering...');
+  log("Rendering...");
 
   /** Controls whether the body is displayed or not. */
   const [displayBody , setDisplayBody] = useState<boolean>(false);

@@ -20,7 +20,7 @@ export type Props = {
 
 // Container component
 function AppBarContainer({ items, classes }: Props) {
-  log('Rendering...');
+  log("Rendering...");
   return (
     <div className={classes.container}>
       {items.map(item => {

@@ -4,6 +4,9 @@ import { memo } from 'react';
 // Generic components
 import { VerticalStepper } from '../../generic';
 
+// Helper components
+import DropdownBody from  "./DropdownBody";
+
 // Constants
 import { STEPPER } from '../../../utils/constants';
 
@@ -22,7 +25,7 @@ log.log = console.log.bind(console);
 /** Questionnarie specialized container component customize 
  * VerticalStepper generic component... */
 function QuestionnarieContainer() {
-  log('Rendering...');
+  log("Rendering...");
   
   // Styles for VericalStepper component
   const stepperStyles = {
@@ -101,29 +104,3 @@ function QuestionnarieContainer() {
 }
 
 export default memo(QuestionnarieContainer);
-
-
-/** DropdownBody helper component takes charge of render content 
- * of each step*/
-type DropdownBodyTypes = {
-  answerOptions?: string[];
-  styles: string;
-  topic: string;
-  type: string;
-}
-
-// eslint-disable-next-line react/no-multi-comp
-function DropdownBody({ styles, answerOptions, topic , type }:DropdownBodyTypes) {
-  return (
-    <div className={styles}>
-      <h1>{topic}</h1>
-      {answerOptions && 
-        <ul>
-          {answerOptions?.map((answer) => (
-            <li key={answer}>{answer}</li>
-          ))}
-        </ul>}
-      {type === "TextInput" && <input />}
-    </div>
-  );
-}
