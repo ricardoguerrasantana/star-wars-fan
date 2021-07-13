@@ -1,8 +1,8 @@
 // Generic components
-import { Dropdown, Menu } from "../generic";
+import { Dropdown, Menu } from "..";
 
 // Types
-import type { DropdownTypes, MenuTypes , MenuItem } from "../generic";
+import type { DropdownTypes, MenuTypes , MenuItem } from "..";
 
 // debugger
 import Debug from "debug";

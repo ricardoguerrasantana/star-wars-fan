@@ -1,6 +1,13 @@
+// React
 import { ReactNode } from 'react';
 
-export type AppBarProps = {
+// debugger
+import Debug from "debug";
+const log = Debug("App:AppBarContainer");
+log.log = console.log.bind(console);
+
+// Props type
+export type Props = {
   classes: {
     container: string
   },
@@ -11,7 +18,9 @@ export type AppBarProps = {
   }[]
 }
 
-function AppBar({ items , classes }: AppBarProps) {
+// Container component
+function AppBarContainer({ items, classes }: Props) {
+  log('Rendering...');
   return (
     <div className={classes.container}>
       {items.map(item => {
@@ -25,4 +34,4 @@ function AppBar({ items , classes }: AppBarProps) {
   );
 }
 
-export default AppBar;
+export default AppBarContainer;
