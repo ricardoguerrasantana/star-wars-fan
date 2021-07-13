@@ -107,3 +107,18 @@
 .dropdownBody li {
   font-size: 15px;
 }
+
+.dropdownBodyOption {
+  background-color: black;
+  color: white;
+}
+
+.dropdownBodySelectedOption {
+  background-color: blue;
+  color: white;
+}
+
+.dropdownBodyDisabledOption {
+  background-color: gray;
+  color: white;
+}

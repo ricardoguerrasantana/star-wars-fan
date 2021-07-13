@@ -1,5 +1,5 @@
 // React
-import { memo } from 'react';
+import { memo, useState } from 'react';
 
 // Generic components
 import { VerticalStepper } from '../../generic';
@@ -26,6 +26,10 @@ log.log = console.log.bind(console);
  * VerticalStepper generic component... */
 function QuestionnarieContainer() {
   log("Rendering...");
+
+  // Stores chosen answers by user
+  const [results , setResults] = useState<string[]>(new Array(DATA.length).fill(""));
+  log("results", results);
   
   // Styles for VericalStepper component
   const stepperStyles = {
@@ -49,6 +53,17 @@ function QuestionnarieContainer() {
     container: styles.menuContainer
   };
 
+  /** Styles for the helper Dropdown componet 
+   * that is going to be passed down */
+  const dropdownBodyStyles = {
+    container: styles.dropdownBody,
+    option: {
+      normal: styles.dropdownBodyOption,
+      selected: styles.dropdownBodySelectedOption,
+      disabled: styles.dropdownBodyDisabledOption,
+    }
+  }
+
   // Text for stepper buttons inside the body of the dropdown
   const stepperButtonText = {
     back: STEPPER.BUTTONS.TEXT.BACK,
@@ -58,7 +73,7 @@ function QuestionnarieContainer() {
   
   const dropdownIds: string[] = [];
   
-  const stepperItems = DATA.sort(() => (Math.random() > .5) ? 1 : -1).map((D, step) => {
+  const stepperItems = DATA.map((D, step) => {
     /** Populates dropdowns array to keep track of Dropdown 
      * components sequence. */
     dropdownIds.push(D.id);
@@ -67,7 +82,10 @@ function QuestionnarieContainer() {
     const bodyComponent = (
       <DropdownBody 
         answerOptions={D.answerOptions}
-        styles={styles.dropdownBody}
+        results={results}
+        setResults={setResults}
+        step={step}
+        styles={dropdownBodyStyles}
         topic={D.topic}
         type={D.type}
       />

@@ -57,32 +57,38 @@ function VerticalStepper({ accordionStyles, dropdownIds, menuStyles, stepperButt
     } 
   }, [selectedDropdownId, dropdownIds]);
   
-  /** Adds state control to identify which Dropdown is selected. */
+  /** Immutable transformation of stepperItems array */
   const accordionItems = stepperItems.map((item) => {
-    item.dropdown.selectedDropdownId = selectedDropdownId;
-    item.dropdown.setSelectedDropdownId = setSelectedDropdownId;
-    return item;
+    /** Turns the body component that is going to be 
+     * passed down to Dropdown into a body with stepping 
+     * control buttons. */
+    const bodyComponent = (
+      <StepButtonsWapper 
+        buttonStyles={stepperStyles.buttons}
+        buttonText={stepperButtonText}
+        lastStep={stepperItems.length - 1}
+        setStep={setStep}
+        step={step}
+      >
+        {item.dropdown.bodyComponent}
+      </StepButtonsWapper>
+    );
+
+    return {
+      dropdown: {
+        bodyComponent,
+        dropdownStyles: item.dropdown.dropdownStyles,
+        headerComponent: item.dropdown.headerComponent,
+        id: item.dropdown.id,
+        /** Adds state control for identifying... */
+        selectedDropdownId,
+        setSelectedDropdownId,
+        /** ...which Dropdown is selected. */
+      },
+      menuItem: item.menuItem
+    }
   });
-  
-  /** Transforms the body component that is going to be passed 
-   * down to Dropdown into a body with step control buttons. */
-  useEffect(() => {
-    accordionItems.forEach((item, step) => {
-      item.dropdown.bodyComponent = (
-        <StepButtonsWapper 
-          buttonStyles={stepperStyles.buttons}
-          buttonText={stepperButtonText}
-          lastStep={accordionItems.length - 1}
-          setStep={setStep}
-          step={step}
-        >
-          {item.dropdown.bodyComponent}
-        </StepButtonsWapper>
-      );    
-    });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-  
+   
   return (
     <div className={stepperStyles.container}>
       <Accordion 
