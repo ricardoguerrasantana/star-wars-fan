@@ -8,7 +8,8 @@ export const STEPPER = {
     TEXT: {
       BACK: "Back",
       NEXT: "Next",
-      END: "Calculate Score"
+      SUBMIT: "Done",
     },
-  }
+  },
+  STEPTITLE: "Question",
 };

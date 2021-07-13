@@ -32,6 +32,7 @@ function QuestionnarieContainer() {
       container: styles.stepperButtonContainer,
       next: styles.stepperButtonNext,
     },
+    extended: styles.stepperExtended,
   };
   
   // Styles for Accordion component
@@ -49,18 +50,25 @@ function QuestionnarieContainer() {
   const stepperButtonText = {
     back: STEPPER.BUTTONS.TEXT.BACK,
     next: STEPPER.BUTTONS.TEXT.NEXT,
-    end: STEPPER.BUTTONS.TEXT.END,
+    submit: STEPPER.BUTTONS.TEXT.SUBMIT,
   };
   
   const dropdownIds: string[] = [];
   
-  const stepperItems = DATA.sort(() => (Math.random() > .5) ? 1 : -1).map((D) => {
+  const stepperItems = DATA.sort(() => (Math.random() > .5) ? 1 : -1).map((D, step) => {
     /** Populates dropdowns array to keep track of Dropdown 
      * components sequence. */
     dropdownIds.push(D.id);
 
-    const headerComponent = (<h1>{D.topic}</h1>);
-    const bodyComponent = (<p>{D.correctAnswer}</p>);
+    const headerComponent = (<h1>{STEPPER.STEPTITLE + ` ${step + 1}`}</h1>);
+    const bodyComponent = (
+      <DropdownBody 
+        answerOptions={D.answerOptions}
+        styles={styles.dropdownBody}
+        topic={D.topic}
+        type={D.type}
+      />
+    );
 
     return {
       dropdown: {
@@ -93,3 +101,29 @@ function QuestionnarieContainer() {
 }
 
 export default memo(QuestionnarieContainer);
+
+
+/** DropdownBody helper component takes charge of render content 
+ * of each step*/
+type DropdownBodyTypes = {
+  answerOptions?: string[];
+  styles: string;
+  topic: string;
+  type: string;
+}
+
+// eslint-disable-next-line react/no-multi-comp
+function DropdownBody({ styles, answerOptions, topic , type }:DropdownBodyTypes) {
+  return (
+    <div className={styles}>
+      <h1>{topic}</h1>
+      {answerOptions && 
+        <ul>
+          {answerOptions?.map((answer) => (
+            <li key={answer}>{answer}</li>
+          ))}
+        </ul>}
+      {type === "TextInput" && <input />}
+    </div>
+  );
+}

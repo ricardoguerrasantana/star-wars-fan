@@ -1,11 +1,15 @@
 // React
-import { ReactNode, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 // Generic components
-import { Accordion } from "../generic";
-
+import { Accordion } from "../../generic";
 // Types
-import type { AccordionTypes , AccordionItem } from "../generic";
+import type { AccordionTypes , AccordionItem } from "../../generic";
+
+// Helper components
+import StepButtonsWapper from  "./StepButtonsWapper";
+// Types from helper component 
+import type { StepButtonsWapperProps } from "./StepButtonsWapper";
 
 // debugger
 import Debug from "debug";
@@ -20,9 +24,10 @@ export type Props = NewAccordionTypes & {
   stepperItems: StepperItem[];
   stepperStyles: {
     container: string;
-    buttons: StepBodyProps["buttonStyles"];
+    buttons: StepButtonsWapperProps["buttonStyles"];
+    extended: string;
   };
-  stepperButtonText: StepBodyProps["buttonText"];
+  stepperButtonText: StepButtonsWapperProps["buttonText"];
 }
 
 /** VerticalStepper generic component ... */
@@ -39,8 +44,18 @@ function VerticalStepper({ accordionStyles, dropdownIds, menuStyles, stepperButt
 
   /** Assigns the respective Dropdown id when step is changed. */
   useEffect(() => {
-    setSelectedDropdownId(dropdownIds[step]);
+    dropdownIds[step] && setSelectedDropdownId(dropdownIds[step]);
   }, [step, dropdownIds]);
+  
+  /** Sets step to its respective Dropdown id when 
+   * selectedDropdownId is changed. */
+  useEffect(() => {
+    if (dropdownIds.indexOf(selectedDropdownId) >= 0) {
+      if (dropdownIds.indexOf(selectedDropdownId) < (dropdownIds.length - 1)) {
+        setStep(dropdownIds.indexOf(selectedDropdownId));
+      }
+    } 
+  }, [selectedDropdownId, dropdownIds]);
   
   /** Adds state control to identify which Dropdown is selected. */
   const accordionItems = stepperItems.map((item) => {
@@ -54,7 +69,7 @@ function VerticalStepper({ accordionStyles, dropdownIds, menuStyles, stepperButt
   useEffect(() => {
     accordionItems.forEach((item, step) => {
       item.dropdown.bodyComponent = (
-        <StepBody 
+        <StepButtonsWapper 
           buttonStyles={stepperStyles.buttons}
           buttonText={stepperButtonText}
           lastStep={accordionItems.length - 1}
@@ -62,11 +77,12 @@ function VerticalStepper({ accordionStyles, dropdownIds, menuStyles, stepperButt
           step={step}
         >
           {item.dropdown.bodyComponent}
-        </StepBody>
+        </StepButtonsWapper>
       );    
     });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
+  
   return (
     <div className={stepperStyles.container}>
       <Accordion 
@@ -74,63 +90,10 @@ function VerticalStepper({ accordionStyles, dropdownIds, menuStyles, stepperButt
         accordionStyles={accordionStyles}
         menuStyles={menuStyles}
       />
-    </div>
-  );
-}
-
-/** StepBody component to be used by previously defined 
- * VerticalStepper component. It takes Dropdown Body and 
- * adds buttons for stepping control */
-
-type StepBodyProps = {
-  children: ReactNode;
-  buttonText: {
-    back: string;
-    next: string;
-    end: string;
-  };
-  buttonStyles: {
-    back: string;
-    container: string;
-    next: string;
-  };
-  lastStep: number;
-  setStep: (step: number) => void;
-  step: number;
-}
-
-// eslint-disable-next-line react/no-multi-comp
-function StepBody ({ children, buttonText , buttonStyles , lastStep, step, setStep }: StepBodyProps) {
-  
-  function handleBackClick() {
-    setStep(step - 1);
-  }
-
-  function handleNextClick() {
-    setStep(step + 1);
-  }
-
-  return (
-    <>
-      {children}
-      <div className={buttonStyles.container}>
-        {step !== 0 && 
-          <button 
-            className={buttonStyles.back} 
-            onClick={handleBackClick}
-            type="button"
-          >
-            {buttonText.back}
-          </button>}
-        <button 
-          className={buttonStyles.next} 
-          onClick={handleNextClick}
-          type="button"
-        >
-          {step === lastStep ? buttonText.end : buttonText.next}
-        </button>
+      <div className={stepperStyles.extended}>
+        {accordionItems[step] && accordionItems[step].dropdown.bodyComponent}
       </div>
-    </>
+    </div>
   );
 }
 
