@@ -51,7 +51,6 @@ function QuizAppContainer (): JSX.Element {
         /> : 
         <Questionnarie 
           data={DATA}
-          done={done}
           results={results} 
           setDone={setDone}
           setResults={setResults}

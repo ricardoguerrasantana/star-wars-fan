@@ -46,11 +46,12 @@ function CheckoutForm({ handleSubmit, header, items, styles, text }:Props) {
         items={items}
         menuStyles={styles.inner}
       />
-      <div className={styles.buttons.submit}>
-        <button type="submit" >
-          {text.buttons.submit}
-        </button>
-      </div>
+      <button 
+        className={styles.buttons.submit}
+        type="submit" 
+      >
+        {text.buttons.submit}
+      </button>
     </form>
   );
 }

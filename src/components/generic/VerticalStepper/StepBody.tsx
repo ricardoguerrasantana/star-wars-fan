@@ -3,7 +3,7 @@ import { ReactNode } from 'react';
 
 // debugger
 import Debug from "debug";
-const log = Debug("App:StepButtonsWapper");
+const log = Debug("App:StepBody");
 log.log = console.log.bind(console);
 
 // Prop types
@@ -14,10 +14,12 @@ export type Props = {
     next: string;
     done: string;
   };
-  buttonStyles: {
-    back: string;
-    container: string;
-    next: string;
+  styles:{
+    buttons: {
+      back: string;
+      container: string;
+      next: string;
+    };
   };
   handleDoneClick: () => void;
   lastStep: number;
@@ -25,10 +27,10 @@ export type Props = {
   step: number;
 }
 
-/** StepButtonsWapper helper component takes DropdownBody component 
+/** StepBody helper component takes DropdownBody component 
  * that VerticalStepper receive and adds buttons to it for stepping 
  * control. */
-function StepButtonsWapper ({ children, buttonText , buttonStyles, handleDoneClick, lastStep, step, setStep }: Props) {
+function StepBody ({ children, buttonText , handleDoneClick, lastStep, step, setStep , styles }: Props) {
   log("Rendering...");
   
   function handleBackClick() {
@@ -42,10 +44,10 @@ function StepButtonsWapper ({ children, buttonText , buttonStyles, handleDoneCli
   return (
     <>
       {children}
-      <div className={buttonStyles.container}>
+      <div className={styles.buttons.container}>
         {step !== 0 ? 
           <button 
-            className={buttonStyles.back} 
+            className={styles.buttons.back} 
             onClick={handleBackClick}
             type="button"
           >
@@ -53,14 +55,14 @@ function StepButtonsWapper ({ children, buttonText , buttonStyles, handleDoneCli
           </button> : <div />}
         {step === lastStep ? 
           <button 
-            className={buttonStyles.next} 
+            className={styles.buttons.next} 
             onClick={handleDoneClick}
             type="button"
           >
             {buttonText.done}
           </button>: 
           <button 
-            className={buttonStyles.next} 
+            className={styles.buttons.next} 
             onClick={handleNextClick}
             type="button"
           >
@@ -71,4 +73,4 @@ function StepButtonsWapper ({ children, buttonText , buttonStyles, handleDoneCli
   );
 }
 
-export default StepButtonsWapper;
+export default StepBody;

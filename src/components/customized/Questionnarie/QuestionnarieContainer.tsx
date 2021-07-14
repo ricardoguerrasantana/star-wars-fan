@@ -14,7 +14,7 @@ import { STEPPER } from '../../../utils/constants';
 import styles from './Questionnarie.module.css';
 
 // Types
-import type { Results, SetResults, Data, SetDone, Done } from "../../../components/customized";
+import type { Results, SetResults, Data, SetDone } from "../../../components/customized";
 
 // debugger
 import Debug from "debug";
@@ -24,7 +24,6 @@ log.log = console.log.bind(console);
 // Props types
 export type Props = {
   data:Data;
-  done:Done;
   results:Results;
   setDone:SetDone;
   setResults:SetResults;
@@ -32,7 +31,7 @@ export type Props = {
 
 /** Questionnarie specialized container component customize 
  * VerticalStepper generic component... */
-function QuestionnarieContainer({ data, done, results, setDone, setResults }: Props) {
+function QuestionnarieContainer({ data, results, setDone, setResults }: Props) {
   log("Rendering...");
 
   /** Show a message when all questions have not 
@@ -42,12 +41,17 @@ function QuestionnarieContainer({ data, done, results, setDone, setResults }: Pr
   // Styles for VericalStepper component
   const stepperStyles = {
     container: styles.stepperContainer,
-    buttons: {
-      back: styles.stepperButtonBack,
-      container: styles.stepperButtonContainer,
-      next: styles.stepperButtonNext,
+    step: { 
+      buttons: {
+        back: styles.stepperButtonBack,
+        container: styles.stepperButtonContainer,
+        next: styles.stepperButtonNext,
+      },
     },
-    extended: styles.stepperExtended,
+    views: {
+      extended: styles.extendedStep,
+      inline: styles.inlineStep,
+    },
   };
   
   // Styles for Accordion component

@@ -1,6 +1,6 @@
 // UI TEXT
 export const APP = {
-  TITLE: "Star Wars Fan"
+  TITLE: "Quiz!!"
 };
 
 export const CHECKOUT = {
@@ -16,6 +16,7 @@ export const FEEDBACK = {
       SUBMIT: "Try it again",
     },
     CORRECT_ANSWER: "Correct answer:",
+    HEADER: "Score",
     VALIDATION: "is correct",
   },
 }
@@ -39,7 +40,6 @@ export const WELCOME = {
     },
     MESSAGE: "How Big a Star Wars Fan Are You?\nTake this quiz and find out.",
     QUOTE: "May the force be with you.",
-    PERSUASION: "When you feel ready click the button below.",
     TITLE: "Welcome Star Wars Fan",
   },
 }

@@ -7,9 +7,9 @@ import { Accordion } from "../../../components/generic";
 import type { AccordionTypes , AccordionItem } from "../../../components/generic";
 
 // Helper components
-import StepButtonsWapper from  "./StepButtonsWapper";
+import StepBody from  "./StepBody";
 // Types from helper components
-import type { Props as StepButtonsWapperProps } from "./StepButtonsWapper";
+import type { Props as StepBodyProps } from "./StepBody";
 
 // debugger
 import Debug from "debug";
@@ -25,10 +25,13 @@ export type Props = NewAccordionTypes & {
   stepperItems: StepperItem[];
   stepperStyles: {
     container: string;
-    buttons: StepButtonsWapperProps["buttonStyles"];
-    extended: string;
+    views: {
+      inline:string;
+      extended:string;
+    };
+    step:StepBodyProps["styles"];
   };
-  stepperButtonText: StepButtonsWapperProps["buttonText"];
+  stepperButtonText: StepBodyProps["buttonText"];
 }
 
 /** VerticalStepper generic component ... */
@@ -64,16 +67,18 @@ function VerticalStepper({ accordionStyles, dropdownIds, handleDoneClick, menuSt
      * passed down to Dropdown into a body with stepping 
      * control buttons. */
     const bodyComponent = (
-      <StepButtonsWapper 
-        buttonStyles={stepperStyles.buttons}
-        buttonText={stepperButtonText}
-        handleDoneClick={handleDoneClick}
-        lastStep={stepperItems.length - 1}
-        setStep={setStep}
-        step={step}
-      >
-        {item.dropdown.bodyComponent}
-      </StepButtonsWapper>
+      <div className={stepperStyles.views.inline}>
+        <StepBody 
+          buttonText={stepperButtonText}
+          handleDoneClick={handleDoneClick}
+          lastStep={stepperItems.length - 1}
+          setStep={setStep}
+          step={step}
+          styles={stepperStyles.step}
+        >
+          {item.dropdown.bodyComponent}
+        </StepBody>
+      </div>
     );
 
     return {
@@ -98,8 +103,18 @@ function VerticalStepper({ accordionStyles, dropdownIds, handleDoneClick, menuSt
         accordionStyles={accordionStyles}
         menuStyles={menuStyles}
       />
-      <div className={stepperStyles.extended}>
-        {accordionItems[step] && accordionItems[step].dropdown.bodyComponent}
+      <div className={stepperStyles.views.extended}>
+        {accordionItems[step] && 
+          <StepBody 
+            buttonText={stepperButtonText}
+            handleDoneClick={handleDoneClick}
+            lastStep={stepperItems.length - 1}
+            setStep={setStep}
+            step={step}
+            styles={stepperStyles.step}
+          >
+            {stepperItems[step].dropdown.bodyComponent}
+          </StepBody>}
       </div>
     </div>
   );

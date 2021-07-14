@@ -11,7 +11,13 @@
 }
 
 .stepperButtonBack {
+  background: none;
+  color: whitesmoke;
+  border: 1px solid white;
   cursor: pointer;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 10px 15px;
 }
 
 .stepperButtonContainer {
@@ -24,10 +30,20 @@
 }
 
 .stepperButtonNext {
+  background: none;
+  color: whitesmoke;
+  border: 1px solid white;
   cursor: pointer;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 10px 15px;
 }
 
-.stepperExtended {
+.inlineStep {
+  /* display: none; */
+}
+
+.extendedStep {
   border: 2px solid white;
   box-sizing: border-box;
   padding: 5px;
@@ -104,9 +120,24 @@
   font-size: 18px;
 }
 
+.dropdownBody ul {
+  display: flex;
+  flex-direction: column;
+}
+
 .dropdownBody li {
   font-size: 15px;
   cursor: pointer;
+  list-style: none;
+  width: fit-content;
+  padding: 4px 10px;
+  margin: 4px;
+}
+
+.dropdownBody input {
+  font-size: 15px;
+  box-sizing: border-box;
+  /* max-width: 500px; */
 }
 
 .dropdownBodyOption {
@@ -126,4 +157,20 @@
   border: 2px solid white;
   box-sizing: border-box;
   padding: 5px;
+}
+
+@media screen and (max-width: 600px) {
+  .extendedStep {
+    display: none;
+  }
+
+  .dropdownBody input {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .inlineStep {
+    display: none;
+  }
 }

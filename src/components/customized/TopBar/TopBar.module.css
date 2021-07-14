@@ -14,4 +14,18 @@
   display: flex;
   flex-direction: row; 
   align-items: center;
+  color: whitesmoke;
+}
+
+.logo {
+  width: 5em;
+  /* svg on an img tag */
+  -webkit-filter: invert(.75); /* safari 6.0 - 9.0 */
+  filter: invert(.75);
+  
+  border: 2px solid white;
+  /* box-sizing: border-box; */
+  padding: 20px;
+
+
 }

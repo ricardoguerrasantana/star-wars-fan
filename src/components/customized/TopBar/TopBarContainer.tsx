@@ -28,14 +28,21 @@ function TopBarContainer() {
   log("Rendering...");
   
   // Left side group
+  const logo = (
+    <img 
+      alt="star wars logo" 
+      className={styles.logo}
+      src="images\icons\Star_wars2.svg"
+    />
+  );
   const leftGroup ={
     class: styles.leftGroup,
-    elements: null,
+    elements: logo,
     key: "left group"
   }
 
   // Group of elements that goes in the top bar
-  const AppTitle = (<h1>{APP.TITLE}</h1>);
+  const AppTitle = (<h2>{APP.TITLE}</h2>);
   const centerGroup = {
     class: styles.centerGroup,
     elements: AppTitle,
@@ -45,7 +52,7 @@ function TopBarContainer() {
   // Right side group
   const rightGroup ={
     class: styles.rightGroup,
-    elements: null,
+    elements: logo,
     key: "right group"
   }
   
@@ -55,7 +62,7 @@ function TopBarContainer() {
   };
   
   // const Classes: AppBarTypes["classes"] = classes;
-  const items: AppBarProps["items"] = [rightGroup, centerGroup, leftGroup];
+  const items: AppBarProps["items"] = [leftGroup, centerGroup, rightGroup];
   return (
     <AppBar 
       classes={classes}

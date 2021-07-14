@@ -1,8 +1,8 @@
 // Generic components
-import { Dropdown, Menu } from "..";
+import { Dropdown, Menu } from "../../../components/generic";
 
 // Types
-import type { DropdownTypes, MenuTypes , MenuItem } from "..";
+import type { DropdownTypes, MenuTypes , MenuItem } from "../../../components/generic";
 
 // debugger
 import Debug from "debug";
@@ -35,7 +35,7 @@ function Accordion({ accordionStyles, accordionItems, menuStyles }: Props) {
   /** Array of objects that contains Dropdown components and 
    * required data by Menu to render its items. Each Menu item is 
    * a Dropdown. */
-  const menuItems = accordionItems.map(({dropdown , menuItem}) =>{ 
+  const menuItems = accordionItems.map(({dropdown , menuItem}) => { 
     const component = (
       <Dropdown 
         bodyComponent={dropdown.bodyComponent}

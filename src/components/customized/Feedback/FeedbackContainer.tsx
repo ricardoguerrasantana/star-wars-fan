@@ -60,11 +60,11 @@ function FeedbackContainer({ data, results, setResults, setStart, setDone }:Prop
   
   function clean (str:string) {
     // eslint-disable-next-line no-useless-escape
-    return str.trim().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()@]/g,"").toLowerCase();
+    return str.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"").trim().toLowerCase();
   }
 
   const header = (
-    <h1>{score()}</h1>
+    <h1>{`${TEXT.HEADER} ${score()}`}</h1>
   );
 
   /** Checkout items */
@@ -73,15 +73,24 @@ function FeedbackContainer({ data, results, setResults, setStart, setDone }:Prop
 
     const component = (
       <>
-        <h2>{item.topic}</h2>
-        <div>
-          <div className={styles.answerContiner}>
-            <p>{`${TEXT.ANSWER_PRESENTATION} ${results[step]} ${validAnswer ? TEXT.VALIDATION : ""}.`}</p>
-          </div>
+        <h3>{item.topic}</h3>
+        <div
+          className={styles.answers}
+        >
+          <p
+            className={validAnswer ? styles.correctAnswer : styles.wrongAnswer}
+          >
+            {`${TEXT.ANSWER_PRESENTATION}`} 
+            <b>{` ${results[step]}`}</b>
+            {` ${validAnswer ? TEXT.VALIDATION : ""}`}
+          </p>
           {!validAnswer && 
-            <div className={styles.correctAnswerContiner}>
-              <p>{`${TEXT.CORRECT_ANSWER} ${item.correctAnswer}`}</p>
-            </div>}
+            <p 
+              className={styles.correctAnswer}
+            >
+              {`${TEXT.CORRECT_ANSWER}`} 
+              <b>{` ${item.correctAnswer}`}</b>
+            </p>}
         </div>
       </>
     );
