@@ -10,27 +10,35 @@ import DropdownBody from  "./DropdownBody";
 // Constants
 import { STEPPER } from '../../../utils/constants';
 
-// Hard coded data
-import DATA from "../../../data/data.json"
-
 // Styles
 import styles from './Questionnarie.module.css';
+
+// Types
+import type { Results, SetResults, Data, SetDone, Done } from "../../../components/customized";
 
 // debugger
 import Debug from "debug";
 const log = Debug('App:QuestionnarieContainer');
 log.log = console.log.bind(console);
 
+// Props types
+export type Props = {
+  data:Data;
+  done:Done;
+  results:Results;
+  setDone:SetDone;
+  setResults:SetResults;
+}
 
 /** Questionnarie specialized container component customize 
  * VerticalStepper generic component... */
-function QuestionnarieContainer() {
+function QuestionnarieContainer({ data, done, results, setDone, setResults }: Props) {
   log("Rendering...");
 
-  // Stores chosen answers by user
-  const [results , setResults] = useState<string[]>(new Array(DATA.length).fill(""));
-  log("results", results);
-  
+  /** Show a message when all questions have not 
+   * been answered. All questions are mandatory. */
+  const [showMessage, setShowMessage] = useState(false);
+
   // Styles for VericalStepper component
   const stepperStyles = {
     container: styles.stepperContainer,
@@ -64,21 +72,22 @@ function QuestionnarieContainer() {
     }
   }
 
-  // Text for stepper buttons inside the body of the dropdown
+  // Text for stepper buttons in the Dropdown's body
+  const { TEXT } = STEPPER;
   const stepperButtonText = {
-    back: STEPPER.BUTTONS.TEXT.BACK,
-    next: STEPPER.BUTTONS.TEXT.NEXT,
-    submit: STEPPER.BUTTONS.TEXT.SUBMIT,
+    back: TEXT.BUTTONS.BACK,
+    next: TEXT.BUTTONS.NEXT,
+    done: TEXT.BUTTONS.DONE,
   };
   
   const dropdownIds: string[] = [];
   
-  const stepperItems = DATA.map((D, step) => {
-    /** Populates dropdowns array to keep track of Dropdown 
-     * components sequence. */
+  const stepperItems = data.map((D, step) => {
+    /** Populates dropdowns array to keep track of 
+     * Dropdown components sequence. */
     dropdownIds.push(D.id);
 
-    const headerComponent = (<h1>{STEPPER.STEPTITLE + ` ${step + 1}`}</h1>);
+    const headerComponent = (<h1>{TEXT.STEP_TITLE + ` ${step + 1}`}</h1>);
     const bodyComponent = (
       <DropdownBody 
         answerOptions={D.answerOptions}
@@ -109,15 +118,30 @@ function QuestionnarieContainer() {
     }
   });
 
+  function handleDoneClick() {
+    if (results && !results.includes("")) {
+      setDone(true);
+    } else {
+      setShowMessage(true);
+    }
+  }
+
   return (
-    <VerticalStepper 
-      accordionStyles={accordionStyles}
-      dropdownIds={dropdownIds}
-      menuStyles={menuStyles}
-      stepperButtonText={stepperButtonText}
-      stepperItems={stepperItems}
-      stepperStyles={stepperStyles}
-    />
+    <>
+      <VerticalStepper 
+        accordionStyles={accordionStyles}
+        dropdownIds={dropdownIds}
+        handleDoneClick={handleDoneClick}
+        menuStyles={menuStyles}
+        stepperButtonText={stepperButtonText}
+        stepperItems={stepperItems}
+        stepperStyles={stepperStyles}
+      />
+      {showMessage && 
+        <div className={styles.stepperWarn}>
+          {TEXT.WARN}
+        </div>}
+    </>
   );
 }
 

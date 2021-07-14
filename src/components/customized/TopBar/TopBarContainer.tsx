@@ -10,7 +10,7 @@ import { memo } from 'react';
 import { AppBar } from '../../generic';
 
 // types
-import type { AppBarPropsType } from '../../generic';
+import type { AppBarProps } from '../../generic';
 
 // constants
 import { APP } from '../../../utils/constants';
@@ -50,12 +50,12 @@ function TopBarContainer() {
   }
   
   // classes for styling customization required by the plain genreic component that this specific component is rendering.
-  const classes: AppBarPropsType["classes"] = {
+  const classes: AppBarProps["classes"] = {
     container: styles.container
   };
   
   // const Classes: AppBarTypes["classes"] = classes;
-  const items: AppBarPropsType["items"] = [rightGroup, centerGroup, leftGroup];
+  const items: AppBarProps["items"] = [rightGroup, centerGroup, leftGroup];
   return (
     <AppBar 
       classes={classes}

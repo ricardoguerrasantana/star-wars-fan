@@ -2,9 +2,9 @@
 import { useEffect, useState } from 'react';
 
 // Generic components
-import { Accordion } from "../../generic";
+import { Accordion } from "../../../components/generic";
 // Types
-import type { AccordionTypes , AccordionItem } from "../../generic";
+import type { AccordionTypes , AccordionItem } from "../../../components/generic";
 
 // Helper components
 import StepButtonsWapper from  "./StepButtonsWapper";
@@ -21,6 +21,7 @@ export type StepperItem = Omit<AccordionItem, "selectedDropdownId" | "setSelecte
 export type NewAccordionTypes = Omit<AccordionTypes, "accordionItems">;
 export type Props = NewAccordionTypes & {
   dropdownIds: string[];
+  handleDoneClick: () => void;
   stepperItems: StepperItem[];
   stepperStyles: {
     container: string;
@@ -31,7 +32,7 @@ export type Props = NewAccordionTypes & {
 }
 
 /** VerticalStepper generic component ... */
-function VerticalStepper({ accordionStyles, dropdownIds, menuStyles, stepperButtonText, stepperItems, stepperStyles }: Props) {
+function VerticalStepper({ accordionStyles, dropdownIds, handleDoneClick, menuStyles, stepperButtonText, stepperItems, stepperStyles }:Props) {
   log("Rendering...");
   /** This state set up control to keep open just one of 
    * the Dropdowns at a time. */
@@ -50,11 +51,11 @@ function VerticalStepper({ accordionStyles, dropdownIds, menuStyles, stepperButt
   /** Sets step to its respective Dropdown id when 
    * selectedDropdownId is changed. */
   useEffect(() => {
-    if (dropdownIds.indexOf(selectedDropdownId) >= 0) {
-      if (dropdownIds.indexOf(selectedDropdownId) < (dropdownIds.length - 1)) {
+    // if (dropdownIds.indexOf(selectedDropdownId) >= 0) {
+      // if (dropdownIds.indexOf(selectedDropdownId) < (dropdownIds.length - 1)) {
         setStep(dropdownIds.indexOf(selectedDropdownId));
-      }
-    } 
+      // }
+    // } 
   }, [selectedDropdownId, dropdownIds]);
   
   /** Immutable transformation of stepperItems array */
@@ -66,6 +67,7 @@ function VerticalStepper({ accordionStyles, dropdownIds, menuStyles, stepperButt
       <StepButtonsWapper 
         buttonStyles={stepperStyles.buttons}
         buttonText={stepperButtonText}
+        handleDoneClick={handleDoneClick}
         lastStep={stepperItems.length - 1}
         setStep={setStep}
         step={step}

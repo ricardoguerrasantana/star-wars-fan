@@ -106,10 +106,10 @@
 
 .dropdownBody li {
   font-size: 15px;
+  cursor: pointer;
 }
 
 .dropdownBodyOption {
-  background-color: black;
   color: white;
 }
 
@@ -118,7 +118,12 @@
   color: white;
 }
 
-.dropdownBodyDisabledOption {
-  background-color: gray;
-  color: white;
+.stepperWarn{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  border: 2px solid white;
+  box-sizing: border-box;
+  padding: 5px;
 }

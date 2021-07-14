@@ -1,0 +1,40 @@
+.container{
+  border: 2px solid white;
+  box-sizing: border-box;
+  padding: 5px;
+  width: 100%;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  white-space: pre-line;
+}
+
+.header{
+  border: 2px solid white;
+  box-sizing: border-box;
+  padding: 5px;
+  width: 100%;
+}
+
+.body{
+  border: 2px solid white;
+  box-sizing: border-box;
+  padding: 5px 5px 30px;
+  width: 100%;
+}
+
+.body q {
+  font-style: italic;
+}
+
+.startButton {
+  background: none;
+  border: 2px solid white;
+  color: white;
+  font-size: 40px;
+  padding: 15px 30px;
+  cursor: pointer;
+}

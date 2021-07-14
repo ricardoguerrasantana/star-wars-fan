@@ -12,13 +12,14 @@ export type Props = {
   buttonText: {
     back: string;
     next: string;
-    submit: string;
+    done: string;
   };
   buttonStyles: {
     back: string;
     container: string;
     next: string;
   };
+  handleDoneClick: () => void;
   lastStep: number;
   setStep: (step: number) => void;
   step: number;
@@ -27,7 +28,7 @@ export type Props = {
 /** StepButtonsWapper helper component takes DropdownBody component 
  * that VerticalStepper receive and adds buttons to it for stepping 
  * control. */
-function StepButtonsWapper ({ children, buttonText , buttonStyles , lastStep, step, setStep }: Props) {
+function StepButtonsWapper ({ children, buttonText , buttonStyles, handleDoneClick, lastStep, step, setStep }: Props) {
   log("Rendering...");
   
   function handleBackClick() {
@@ -50,13 +51,21 @@ function StepButtonsWapper ({ children, buttonText , buttonStyles , lastStep, st
           >
             {buttonText.back}
           </button> : <div />}
-        <button 
-          className={buttonStyles.next} 
-          onClick={handleNextClick}
-          type="button"
-        >
-          {step === lastStep ? buttonText.submit : buttonText.next}
-        </button>
+        {step === lastStep ? 
+          <button 
+            className={buttonStyles.next} 
+            onClick={handleDoneClick}
+            type="button"
+          >
+            {buttonText.done}
+          </button>: 
+          <button 
+            className={buttonStyles.next} 
+            onClick={handleNextClick}
+            type="button"
+          >
+            {buttonText.next}
+          </button>}
       </div>
     </>
   );

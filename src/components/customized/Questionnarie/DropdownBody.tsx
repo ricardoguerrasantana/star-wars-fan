@@ -1,17 +1,16 @@
+// Types
+import type { Results, SetResults } from "../../../components/customized";
+
 // debugger
 import Debug from "debug";
 const log = Debug("App:DropdownBody");
 log.log = console.log.bind(console);
 
 // Prop types
-type Result = string[];
-
-type UpdateResult = (prev: Result) => Result;
-
 export type Props = {
   answerOptions?: string[];
-  results: string[];
-  setResults: (callback: UpdateResult) => void;
+  results: Results;
+  setResults: SetResults;
   step: number;
   styles: {
     container: string; 
@@ -30,8 +29,8 @@ export type Props = {
 function DropdownBody({ answerOptions, results, setResults, step, styles, topic , type }: Props) {
   log("Rendering...");
 
-  function handleOnAnswerType(e: React.ChangeEvent<HTMLInputElement>) {
-    setResults(prev => {
+  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
+    setResults((prev) => {
       const next = [...prev];
       next[step] = e.target.value;
       return next;
@@ -52,30 +51,25 @@ function DropdownBody({ answerOptions, results, setResults, step, styles, topic 
               });
             }
 
-            function isSeleted() {
-              return results[step] === answer ?
-                styles.option.selected :
-                results[step] === "" ?
-                styles.option.normal :
-                styles.option.disabled;
-            }
+            const optionStyle = results[step] === answer ?
+              styles.option.selected :
+              styles.option.normal;
+            
             return (
-              <li key={answer}>
-                <button 
-                  className={isSeleted()}
-                  disabled={results[step] !== ""}
-                  onClick={handleOnAnswerClick}
-                  type="button"
-                >
-                  {answer}
-                </button>
+              <li 
+                className={optionStyle}
+                key={answer}
+                onClick={handleOnAnswerClick}
+              >
+                {answer}
               </li>
             );
           })}
         </ul>}
       {type === "TextInput" && 
         <input 
-          onChange={handleOnAnswerType}
+          onChange={handleChange}
+          value={results[step]}
         />}
     </div>
   );
