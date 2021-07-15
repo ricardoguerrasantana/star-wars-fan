@@ -29,7 +29,10 @@ export const STEPPER = {
       DONE: "Done",
     },
     STEP_TITLE: "Question",
-    WARN: "Please answer all questions."
+    VALIDATION_MESSAGE: "Please answer all questions.",
+    INPUT:{
+      PLACEHOLDER: "Your answer here..",
+    },
   },
 };
 

@@ -10,6 +10,7 @@
   text-align: center;
   color: white;
   white-space: pre-line;
+  /* overflow: scroll; */
 }
 
 .header{
@@ -53,8 +54,8 @@
   cursor: pointer;
   margin: 20px;
 
-  /* Button effect */
-  transition: all .5s;
+/* Glow button effect... */
+transition: all .5s;
 }
 
 .startButton:hover {
@@ -62,10 +63,9 @@
   color: black;
   border: 2px solid black;
   border-radius: 10px;
-  
-  /* Glow */
   box-shadow: 0 15px 15px rgba(81, 255, 13, .4);
 }
+/* ...Glow button effect */
 
 
 @media screen and (max-width: 600px) {

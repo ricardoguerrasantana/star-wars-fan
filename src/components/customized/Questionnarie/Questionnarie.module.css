@@ -1,27 +1,40 @@
 .stepperContainer {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: left;
   width: 100%;
-  max-width: 1500px;
-  border: 2px solid white;
+  max-width: 1200px;
+  /* border: 2px solid white; */
   box-sizing: border-box;
   padding: 5px 5%;
   color:white;
+  height: inherit;
+  margin-bottom: 20px;
 }
 
 .stepperButtonBack {
   background: none;
   color: whitesmoke;
-  border: 1px solid white;
+  border: 2px solid white;
   cursor: pointer;
   font-size: 15px;
   font-weight: bold;
   padding: 10px 15px;
+  
+/* Glow button effect... */
+  transition: all .1s;
 }
 
+.stepperButtonBack:hover {
+  background-color:rgba(204, 191, 15, 0.794);
+  color: black;
+  border: 2px solid black;
+  box-shadow: 0 5px 15px rgba(204, 191, 15, 0.794);
+}
+/* ...Glow button effect */
+
 .stepperButtonContainer {
-  border: 2px solid white;
+  /* border: 2px solid white; */
   box-sizing: border-box;
   padding: 5px;
   width: 100%;
@@ -32,37 +45,96 @@
 .stepperButtonNext {
   background: none;
   color: whitesmoke;
-  border: 1px solid white;
+  border: 2px solid white;
   cursor: pointer;
   font-size: 15px;
   font-weight: bold;
   padding: 10px 15px;
+
+/* Glow button effect... */
+transition: all .1s;
 }
 
-.inlineStep {
-  /* display: none; */
+.stepperButtonNext:hover {
+  background-color:rgba(81, 255, 13, .6);
+  color: black;
+  border: 2px solid black;
+  box-shadow: 0 5px 15px rgba(81, 255, 13, .6);
 }
+/* ...Glow button effect */
 
 .extendedStep {
-  border: 2px solid white;
+  /* border: 2px solid white; */
   box-sizing: border-box;
-  padding: 5px;
-  width: 100%;
+  padding: 0 15px 60px 0;
+  width: auto;
+  height: inherit;
+  overflow-y: scroll;
+  margin-left: 20px;
 }
+/** Scrollbar rule set...*/
+/* width */
+.extendedStep::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+.extendedStep::-webkit-scrollbar-track {
+  /* box-shadow: inset 0 0 5px grey;  */
+  /* border-radius: 10px; */
+}
+
+/* Handle */
+.extendedStep::-webkit-scrollbar-thumb {
+  background: white; 
+  /* border-radius: 10px; */
+}
+
+/* Handle on hover */
+.extendedStep::-webkit-scrollbar-thumb:hover {
+  background: #b30000; 
+}
+/** ...Scrollbar rule set*/
 
 .accordionContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
-  max-width: 400px;
-  border: 2px solid white;
+  max-width: 300px;
+  /* border: 2px solid white; */
   box-sizing: border-box;
-  padding: 5px;
+  
+/** Scrollbar rule set...*/
+  padding: 0 0 60px 0;
+  overflow-y: scroll;
+  height: inherit;
+}
+/* width */
+.accordionContainer::-webkit-scrollbar {
+  width: 10px;
 }
 
+/* Track */
+.accordionContainer::-webkit-scrollbar-track {
+  /* box-shadow: inset 0 0 5px grey;  */
+  /* border-radius: 10px; */
+}
+
+/* Handle */
+.accordionContainer::-webkit-scrollbar-thumb {
+  background: white; 
+  /* border-radius: 10px; */
+}
+
+/* Handle on hover */
+.accordionContainer::-webkit-scrollbar-thumb:hover {
+  background: #b30000; 
+}
+/** ...Scrollbar rule set*/
+
 .accordionHeader {
-  border: 2px solid white;
+  /* border: 2px solid white; */
   box-sizing: border-box;
   padding: 5px;
 }
@@ -72,7 +144,7 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
-  border: 2px solid white;
+  /* border: 2px solid white; */
   box-sizing: border-box;
   padding: 5px;
 }
@@ -82,7 +154,7 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
-  border: 2px solid white;
+  /* border: 2px solid white; */
   box-sizing: border-box;
   padding: 5px;
 }
@@ -92,26 +164,40 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
-  border: 2px solid white;
+  /* border: 2px solid white; */
   box-sizing: border-box;
   padding: 5px;
 }
 
 .dropdownHeader {
-  border: 2px solid white;
+  border: 1px solid whitesmoke;
   box-sizing: border-box;
   padding: 5px;
   width: 100%;
   text-align: center;
+  cursor: pointer;
 }
 .dropdownHeader h1 {
-  font-size: 20px;
+  font-size: 1em;
+}
+
+.disabledDropdownHeader {
+  border: 1px solid whitesmoke;
+  box-sizing: border-box;
+  padding: 5px;
+  width: 100%;
+  text-align: center;
+  cursor: pointer;
+  color: rgb(255, 255, 255, 0.4)
+}
+.disabledDropdownHeader h1 {
+  font-size: 1em;
 }
 
 .dropdownBody {
-  border: 2px solid white;
+  /* border: 2px solid white; */
   box-sizing: border-box;
-  padding: 5px;
+  /* padding: 5px; */
   width: 100%;
   text-align: justify;
 }
@@ -138,7 +224,35 @@
   font-size: 15px;
   box-sizing: border-box;
   /* max-width: 500px; */
+  margin-bottom: 30px;
+  background: blue;
+  color: black;
+  /* font-weight: 900; */
+  border: 2px solid black;
+  box-shadow: 0 5px 15px blue;
+  font-family: inherit;
+  font-size: 1.5em;
+  outline: none;
+  border-radius: 10px;
+  padding: 3px 15px;
+  width: 450px;
+  max-width: 100%;
 }
+
+/* Placeholder color... */
+.dropdownBody input::placeholder {
+  color: black;
+  opacity: 1; /* Firefox */
+}
+
+.dropdownBody input:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: black;
+}
+
+.dropdownBody input::-ms-input-placeholder { /* Microsoft Edge */
+  color: black;
+}
+/* ...Placeholder color */
 
 .dropdownBodyOption {
   color: white;
@@ -146,31 +260,46 @@
 
 .dropdownBodySelectedOption {
   background-color: blue;
-  color: white;
+  color: black;
+  border: 2px solid black;
+  box-shadow: 0 5px 15px blue;
+  font-weight: 900;
+  border-radius: 10px;
 }
+/* ...Glow button effect */
 
-.stepperWarn{
+
+.validationMessage{
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
-  border: 2px solid white;
+  /* border: 2px solid white; */
   box-sizing: border-box;
   padding: 5px;
+  color: rgb(255, 255, 0, 0.8);
+  margin-top: 20px;
 }
 
+/* Small screen 600 */
 @media screen and (max-width: 600px) {
   .extendedStep {
     display: none;
   }
-
+  
   .dropdownBody input {
     width: 100%;
   }
+  
+  .accordionContainer {
+    max-width: 100%;
+  }
 }
 
+/* Medium and Large screen */
 @media screen and (min-width: 600px) {
   .inlineStep {
     display: none;
   }
+
 }

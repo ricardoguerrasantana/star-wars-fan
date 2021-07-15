@@ -1,31 +1,61 @@
 
 .container {
-  border: 2px solid white;
+  /* border: 2px solid white; */
   box-sizing: border-box;
   padding: 5px;
-  width: 100%;
+  width: 70%;
   display:flex;
   flex-direction: column;
   align-items: center;
   color: white;
+  
+  overflow-y: scroll;
+
+/** Scrollbar rule set...*/
+  padding: 0 0 60px 0;
+  overflow-y: scroll;
+  height: inherit;
+}
+/* width */
+.container::-webkit-scrollbar {
+width: 10px;
 }
 
+/* Track */
+.container::-webkit-scrollbar-track {
+/* box-shadow: inset 0 0 5px grey;  */
+/* border-radius: 10px; */
+}
+
+/* Handle */
+.container::-webkit-scrollbar-thumb {
+background: white; 
+/* border-radius: 10px; */
+}
+
+/* Handle on hover */
+.container::-webkit-scrollbar-thumb:hover {
+background: #b30000; 
+}
+/** ...Scrollbar rule set*/
+
 .header {
-  border: 2px solid white;
+  /* border: 2px solid white; */
   box-sizing: border-box;
   padding: 5px;
   text-align: center;
 }
 
 .innerContainer {
-  border: 2px solid white;
+  /* border: 2px solid white; */
   box-sizing: border-box;
   padding: 5px;
   width: 100%;
   display:flex;
   flex-direction: column;
-  justify-content: left;
-  /* align-items: flex-start; */
+
+  align-items: center;
+  text-align: center;
 }
 
 .submitButton{
@@ -36,31 +66,69 @@
   padding: 10px 20px;
   font-weight: 600;
   cursor: pointer;
+  margin-top: 40px;
+
+/* Glow button effect... */
+  transition: all .5s;
 }
+
+.submitButton:hover {
+  background-color:rgba(204, 191, 15, 0.794);
+  color: black;
+  border: 2px solid black;
+  border-radius: 10px;
+  box-shadow: 0 15px 15px rgba(204, 191, 15, 0.794);
+}
+/* ...Glow button effect */
 
 .checkoutItem {}
 
-.correctAnswer{
-  background-color: yellowgreen;
-  color: black;
-  /* width: fit-content; */
-  padding: 5px 10px;
-  margin: 5px;
-}
-
-.wrongAnswer{
-  background-color: red;
-  color: black;
-  /* width: fit-content; */
-  padding: 5px 10px;
-  margin: 5px;
-}
-
 .answers{
-  border: 2px solid white;
+  /* border: 2px solid white; */
   box-sizing: border-box;
   padding: 5px;
   width: 100%;
-  display:inline-flex;
+  display: inline-block;
   /* flex-direction: column; */
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.correctAnswer{
+  color: black;
+  width: fit-content;
+  padding: 5px 10px;
+  
+  /* Glow answer effect... */
+  background-color:rgba(81, 255, 13, .6);
+  color: black;
+  border: 2px solid black;
+  box-shadow: 0 5px 15px rgba(81, 255, 13, .6);
+  border-radius: 10px;
+  margin: 10px;
+}
+
+
+.wrongAnswer{
+  color: black;
+  width: fit-content;
+  padding: 5px 10px;
+
+  /* Glow answer effect... */
+  background-color:rgb(255, 0, 0, .9);
+  color: black;
+  border: 2px solid black;
+  box-shadow: 0 5px 15px rgb(255, 0, 0, 0.9);
+  border-radius: 10px;
+  margin: 10px;
+}
+
+/* Small screen 600 */
+@media screen and (max-width: 600px) {
+  .container {
+    width: 100%;
+  }
 }

@@ -47,6 +47,7 @@ function QuestionnarieContainer({ data, results, setDone, setResults }: Props) {
         container: styles.stepperButtonContainer,
         next: styles.stepperButtonNext,
       },
+      validationMessage: styles.validationMessage,
     },
     views: {
       extended: styles.extendedStep,
@@ -78,10 +79,13 @@ function QuestionnarieContainer({ data, results, setDone, setResults }: Props) {
 
   // Text for stepper buttons in the Dropdown's body
   const { TEXT } = STEPPER;
-  const stepperButtonText = {
-    back: TEXT.BUTTONS.BACK,
-    next: TEXT.BUTTONS.NEXT,
-    done: TEXT.BUTTONS.DONE,
+  const stepBodyText = {
+    buttons: {
+      back: TEXT.BUTTONS.BACK,
+      next: TEXT.BUTTONS.NEXT,
+      done: TEXT.BUTTONS.DONE,
+    },
+    validationMessage: TEXT.VALIDATION_MESSAGE,
   };
   
   const dropdownIds: string[] = [];
@@ -95,6 +99,7 @@ function QuestionnarieContainer({ data, results, setDone, setResults }: Props) {
     const bodyComponent = (
       <DropdownBody 
         answerOptions={D.answerOptions}
+        inputPlaceholder={TEXT.INPUT.PLACEHOLDER}
         results={results}
         setResults={setResults}
         step={step}
@@ -110,7 +115,7 @@ function QuestionnarieContainer({ data, results, setDone, setResults }: Props) {
         dropdownStyles: {
           body: styles.dropdownBody,
           container: styles.dropdownContainer,
-          header: styles.dropdownHeader
+          header: results[step] === "" ? styles.dropdownHeader : styles.disabledDropdownHeader
         },
         headerComponent,
         id: D.id,
@@ -131,21 +136,16 @@ function QuestionnarieContainer({ data, results, setDone, setResults }: Props) {
   }
 
   return (
-    <>
-      <VerticalStepper 
-        accordionStyles={accordionStyles}
-        dropdownIds={dropdownIds}
-        handleDoneClick={handleDoneClick}
-        menuStyles={menuStyles}
-        stepperButtonText={stepperButtonText}
-        stepperItems={stepperItems}
-        stepperStyles={stepperStyles}
-      />
-      {showMessage && 
-        <div className={styles.stepperWarn}>
-          {TEXT.WARN}
-        </div>}
-    </>
+    <VerticalStepper 
+      accordionStyles={accordionStyles}
+      dropdownIds={dropdownIds}
+      handleDoneClick={handleDoneClick}
+      menuStyles={menuStyles}
+      showMessage={showMessage}
+      stepBodyText={stepBodyText}
+      stepperItems={stepperItems}
+      stepperStyles={stepperStyles}
+    />
   );
 }
 

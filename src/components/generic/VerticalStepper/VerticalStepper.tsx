@@ -31,11 +31,12 @@ export type Props = NewAccordionTypes & {
     };
     step:StepBodyProps["styles"];
   };
-  stepperButtonText: StepBodyProps["buttonText"];
+  stepBodyText: StepBodyProps["text"];
+  showMessage: StepBodyProps["showMessage"];
 }
 
 /** VerticalStepper generic component ... */
-function VerticalStepper({ accordionStyles, dropdownIds, handleDoneClick, menuStyles, stepperButtonText, stepperItems, stepperStyles }:Props) {
+function VerticalStepper({ accordionStyles, dropdownIds, handleDoneClick, menuStyles, stepBodyText, stepperItems, stepperStyles, showMessage }:Props) {
   log("Rendering...");
   /** This state set up control to keep open just one of 
    * the Dropdowns at a time. */
@@ -69,12 +70,13 @@ function VerticalStepper({ accordionStyles, dropdownIds, handleDoneClick, menuSt
     const bodyComponent = (
       <div className={stepperStyles.views.inline}>
         <StepBody 
-          buttonText={stepperButtonText}
           handleDoneClick={handleDoneClick}
           lastStep={stepperItems.length - 1}
           setStep={setStep}
+          showMessage={showMessage}
           step={step}
           styles={stepperStyles.step}
+          text={stepBodyText}
         >
           {item.dropdown.bodyComponent}
         </StepBody>
@@ -106,12 +108,13 @@ function VerticalStepper({ accordionStyles, dropdownIds, handleDoneClick, menuSt
       <div className={stepperStyles.views.extended}>
         {accordionItems[step] && 
           <StepBody 
-            buttonText={stepperButtonText}
             handleDoneClick={handleDoneClick}
             lastStep={stepperItems.length - 1}
             setStep={setStep}
+            showMessage={showMessage}
             step={step}
             styles={stepperStyles.step}
+            text={stepBodyText}
           >
             {stepperItems[step].dropdown.bodyComponent}
           </StepBody>}

@@ -9,6 +9,7 @@ log.log = console.log.bind(console);
 // Prop types
 export type Props = {
   answerOptions?: string[];
+  inputPlaceholder: string;
   results: Results;
   setResults: SetResults;
   step: number;
@@ -26,7 +27,7 @@ export type Props = {
 
 /** DropdownBody helper component takes charge of rendering 
  * content of each step*/
-function DropdownBody({ answerOptions, results, setResults, step, styles, topic , type }: Props) {
+function DropdownBody({ answerOptions, inputPlaceholder, results, setResults, step, styles, topic , type }: Props) {
   log("Rendering...");
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -69,6 +70,8 @@ function DropdownBody({ answerOptions, results, setResults, step, styles, topic 
       {type === "TextInput" && 
         <input 
           onChange={handleChange}
+          placeholder={inputPlaceholder}
+          type="text"
           value={results[step]}
         />}
     </div>

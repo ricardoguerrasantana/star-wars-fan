@@ -37,6 +37,9 @@ function QuizAppContainer (): JSX.Element {
   log("results", results);
   const [start, setStart] = useState(false);
   const [done, setDone] = useState(false);
+
+  // Mocked results
+  // const MockedResults = ["C-3PO", "no se.", "1977","950", "all terrain,  armored transport . "];
   
   return (
     <div className={styles.container}>
@@ -45,6 +48,7 @@ function QuizAppContainer (): JSX.Element {
         <Feedback 
           data={DATA}
           results={results}
+          // results={MockedResults}
           setDone={setDone}
           setResults={setResults}
           setStart={setStart}

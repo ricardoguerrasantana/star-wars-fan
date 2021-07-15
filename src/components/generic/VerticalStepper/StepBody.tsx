@@ -9,28 +9,33 @@ log.log = console.log.bind(console);
 // Prop types
 export type Props = {
   children: ReactNode;
-  buttonText: {
-    back: string;
-    next: string;
-    done: string;
-  };
+  text: {
+    buttons: {
+      back: string;
+      next: string;
+      done: string;
+    };
+    validationMessage: string;
+  }
   styles:{
     buttons: {
       back: string;
       container: string;
       next: string;
     };
+    validationMessage: string;
   };
   handleDoneClick: () => void;
   lastStep: number;
   setStep: (step: number) => void;
   step: number;
+  showMessage: boolean;
 }
 
 /** StepBody helper component takes DropdownBody component 
  * that VerticalStepper receive and adds buttons to it for stepping 
  * control. */
-function StepBody ({ children, buttonText , handleDoneClick, lastStep, step, setStep , styles }: Props) {
+function StepBody ({ children, text , handleDoneClick, lastStep, step, setStep , styles, showMessage }: Props) {
   log("Rendering...");
   
   function handleBackClick() {
@@ -51,7 +56,7 @@ function StepBody ({ children, buttonText , handleDoneClick, lastStep, step, set
             onClick={handleBackClick}
             type="button"
           >
-            {buttonText.back}
+            {text.buttons.back}
           </button> : <div />}
         {step === lastStep ? 
           <button 
@@ -59,16 +64,20 @@ function StepBody ({ children, buttonText , handleDoneClick, lastStep, step, set
             onClick={handleDoneClick}
             type="button"
           >
-            {buttonText.done}
+            {text.buttons.done}
           </button>: 
           <button 
             className={styles.buttons.next} 
             onClick={handleNextClick}
             type="button"
           >
-            {buttonText.next}
+            {text.buttons.next}
           </button>}
       </div>
+      {showMessage && 
+        <div className={styles.validationMessage}>
+          {text.validationMessage}
+        </div>}
     </>
   );
 }
