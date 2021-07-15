@@ -1,7 +1,7 @@
 .container{
-  border: 2px solid white;
-  box-sizing: border-box;
-  padding: 5px;
+  /* border: 2px solid white; */
+  /* box-sizing: border-box; */
+  /* padding: 5px; */
   width: 100%;
   display:flex;
   flex-direction: column;
@@ -13,29 +13,64 @@
 }
 
 .header{
-  border: 2px solid white;
-  box-sizing: border-box;
+  /* border: 2px solid white; */
+  /* box-sizing: border-box; */
+  /* padding: 5px; */
+  width: 100%;
+}
+
+.header h1 {
+  font-size: 2.3em;
+}
+
+.body{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* border: 2px solid white; */
+  /* box-sizing: border-box; */
   padding: 5px;
   width: 100%;
 }
 
-.body{
-  border: 2px solid white;
-  box-sizing: border-box;
-  padding: 5px 5px 30px;
-  width: 100%;
+.body h2 {
+  font-size: 1.5em;
 }
 
 .body q {
   font-style: italic;
+  padding: 20px 0px;
+  font-size: 1.2em;
 }
 
 .startButton {
   background: none;
   border: 2px solid white;
   color: white;
-  font-size: 35px;
+  font-size: 2em;
   font-weight: 600;
-  padding: 15px 30px;
+  padding: 0.5em 1em;
   cursor: pointer;
+  margin: 20px;
+
+  /* Button effect */
+  transition: all .5s;
+}
+
+.startButton:hover {
+  background-color:rgba(81, 255, 13, .6);
+  color: black;
+  border: 2px solid black;
+  border-radius: 10px;
+  
+  /* Glow */
+  box-shadow: 0 15px 15px rgba(81, 255, 13, .4);
+}
+
+
+@media screen and (max-width: 600px) {
+  /* .startButton{
+    font-size: 20px;
+    padding: 12px 24px;
+  } */
 }

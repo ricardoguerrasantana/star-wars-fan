@@ -2,11 +2,12 @@
   display: flex;
   width: 100%;
   color: white;
+  min-height: 100px;
   justify-content: space-between;
   align-items: center;
-  /* border: 2px solid white; */
-  /* box-sizing: border-box; */
-  /* margin: 5px; */
+  border: 2px solid white;
+  box-sizing: border-box;
+  margin: 5px;
 }
 
 .centerGroup {
@@ -17,19 +18,12 @@
 }
 
 .logo {
-  width: 50px;
+  width: 5em;
   /* svg on an img tag */
   -webkit-filter: invert(.75); /* safari 6.0 - 9.0 */
   filter: invert(.75);
   
-  /* border: 2px solid white; */
+  border: 2px solid white;
   /* box-sizing: border-box; */
   padding: 20px;
-}
-
-@media screen and (max-width: 600px) {
-  .logo {
-    padding: 0;
-    width: 35px;
-  }
 }

@@ -3,6 +3,7 @@ import { WELCOME } from "../../../utils/constants";
 
 // Styles
 import styles from "./Welcome.module.css";
+// import styles from "./Welcome.structure.module.css";
 
 // Types
 import type { SetStart } from "../../../components/customized";

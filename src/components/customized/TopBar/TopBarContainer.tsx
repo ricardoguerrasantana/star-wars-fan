@@ -17,6 +17,7 @@ import { APP } from '../../../utils/constants';
 
 // Styles
 import styles from './TopBar.module.css';
+// import styles from './TopBar.structure.module.css';
 
 // debugger
 import Debug from "debug";
@@ -42,7 +43,7 @@ function TopBarContainer() {
   }
 
   // Group of elements that goes in the top bar
-  const AppTitle = (<h2>{APP.TITLE}</h2>);
+  const AppTitle = (<h1>{""}</h1>);
   const centerGroup = {
     class: styles.centerGroup,
     elements: AppTitle,
