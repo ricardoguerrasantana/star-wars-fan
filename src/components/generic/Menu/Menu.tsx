@@ -8,15 +8,15 @@ log.log = console.log.bind(console);
 
 // Prop types
 export type MenuItem = {
-  class: string;
-  clickable?: boolean;
-  component: ReactNode;
+  element: ReactNode;
   handleClick?: () => void;
   id: string;
+  pointer?: boolean;
+  styles: string;
 }
 
 export type Props = {
-  menuStyles: {
+  styles: {
     container: string;
   };
   items: MenuItem[];
@@ -26,19 +26,23 @@ export type Props = {
  * boxes called Items that in turn receive custom components. 
  * These Items can be assigned handler functions from parent 
  * component. */
-function Menu({ items , menuStyles }: Props) {
+function Menu({ items , styles }: Props) {
   log("Rendering...");
   return (
-    <div className={menuStyles.container} >
-      {items.map((item) => {
+    <div 
+      className={styles.container}
+      data-testid="Menu" 
+    >
+      {items.map((item, i) => {
         return (
           <div 
-            className={item.class}
+            className={item.styles}
+            data-testid="item"
             key={item.id}
             onClick={item.handleClick}
-            style={item.clickable ? {cursor: "pointer"} : undefined}
+            style={item.pointer ? {cursor: "pointer"} : undefined}
           >
-            {item.component}
+            {item.element}
           </div>
         );
       })}

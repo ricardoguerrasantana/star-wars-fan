@@ -36,7 +36,7 @@ export type Props = NewAccordionTypes & {
 }
 
 /** VerticalStepper generic component ... */
-function VerticalStepper({ accordionStyles, dropdownIds, handleDoneClick, menuStyles, stepBodyText, stepperItems, stepperStyles, showMessage }:Props) {
+function VerticalStepper({ accordionStyles, dropdownIds, handleDoneClick, stepBodyText, stepperItems, stepperStyles, showMessage }:Props) {
   log("Rendering...");
   /** This state set up control to keep open just one of 
    * the Dropdowns at a time. */
@@ -103,7 +103,6 @@ function VerticalStepper({ accordionStyles, dropdownIds, handleDoneClick, menuSt
       <Accordion 
         accordionItems={accordionItems}
         accordionStyles={accordionStyles}
-        menuStyles={menuStyles}
       />
       <div className={stepperStyles.views.extended}>
         {accordionItems[step] && 

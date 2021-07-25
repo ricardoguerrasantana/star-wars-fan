@@ -11,7 +11,8 @@ import DropdownBody from  "./DropdownBody";
 import { STEPPER } from '../../../utils/constants';
 
 // Styles
-import styles from './Questionnarie.module.css';
+import questionnarieStyles from './Questionnarie.module.css';
+import menuStyles from './menu.module.css';
 
 // Types
 import type { Results, SetResults, Data, SetDone } from "../../../components/customized";
@@ -40,40 +41,43 @@ function QuestionnarieContainer({ data, results, setDone, setResults }: Props) {
 
   // Styles for VericalStepper component
   const stepperStyles = {
-    container: styles.stepperContainer,
+    container: questionnarieStyles.stepperContainer,
     step: { 
       buttons: {
-        back: styles.stepperButtonBack,
-        container: styles.stepperButtonContainer,
-        next: styles.stepperButtonNext,
+        back: questionnarieStyles.stepperButtonBack,
+        container: questionnarieStyles.stepperButtonContainer,
+        next: questionnarieStyles.stepperButtonNext,
       },
-      validationMessage: styles.validationMessage,
+      validationMessage: questionnarieStyles.validationMessage,
     },
     views: {
-      extended: styles.extendedStep,
-      inline: styles.inlineStep,
+      extended: questionnarieStyles.extendedStep,
+      inline: questionnarieStyles.inlineStep,
     },
   };
   
   // Styles for Accordion component
   const accordionStyles = {
-    container: styles.accordionContainer,
-    header: styles.accordionHeader
+    container: questionnarieStyles.accordionContainer,
+    header: questionnarieStyles.accordionHeader,
+    menu: {
+      container: menuStyles.container,
+    },
   };
   
   // Styles for Menu component
-  const menuStyles = {
-    container: styles.menuContainer
-  };
+  // const containerStyle = {
+  //   container: menuStyles.container
+  // };
 
   /** Styles for the helper Dropdown componet 
    * that is going to be passed down */
   const dropdownBodyStyles = {
-    container: styles.dropdownBody,
+    container: questionnarieStyles.dropdownBody,
     option: {
-      normal: styles.dropdownBodyOption,
-      selected: styles.dropdownBodySelectedOption,
-      disabled: styles.dropdownBodyDisabledOption,
+      normal: questionnarieStyles.dropdownBodyOption,
+      selected: questionnarieStyles.dropdownBodySelectedOption,
+      disabled: questionnarieStyles.dropdownBodyDisabledOption,
     }
   }
 
@@ -113,15 +117,15 @@ function QuestionnarieContainer({ data, results, setDone, setResults }: Props) {
       dropdown: {
         bodyComponent,
         dropdownStyles: {
-          body: styles.dropdownBody,
-          container: styles.dropdownContainer,
-          header: results[step] === "" ? styles.dropdownHeader : styles.disabledDropdownHeader
+          body: questionnarieStyles.dropdownBody,
+          container: questionnarieStyles.dropdownContainer,
+          header: results[step] === "" ? questionnarieStyles.dropdownHeader : questionnarieStyles.disabledDropdownHeader
         },
         headerComponent,
         id: D.id,
       },
       menuItem: {
-        class: styles.menuItem,
+        styles: menuStyles.item,
         id: "menuItem" + D.id,
       }
     }
@@ -140,7 +144,7 @@ function QuestionnarieContainer({ data, results, setDone, setResults }: Props) {
       accordionStyles={accordionStyles}
       dropdownIds={dropdownIds}
       handleDoneClick={handleDoneClick}
-      menuStyles={menuStyles}
+      // menuStyles={containerStyle}
       showMessage={showMessage}
       stepBodyText={stepBodyText}
       stepperItems={stepperItems}

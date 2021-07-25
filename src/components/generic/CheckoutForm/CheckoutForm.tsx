@@ -23,7 +23,7 @@ export type Props = {
     };
     container:string;
     header:string;
-    inner:MenuTypes["menuStyles"];
+    inner:MenuTypes["styles"];
   };
   text:{
     buttons:{
@@ -44,7 +44,7 @@ function CheckoutForm({ handleSubmit, header, items, styles, text }:Props) {
       </div>
       <Menu 
         items={items}
-        menuStyles={styles.inner}
+        styles={styles.inner}
       />
       <button 
         className={styles.buttons.submit}

@@ -71,7 +71,7 @@ function FeedbackContainer({ data, results, setResults, setStart, setDone }:Prop
   const checkoutItems = data.map((item, step) => {
     const validAnswer = clean(item.correctAnswer) === clean(results[step]);
 
-    const component = (
+    const element = (
       <>
         <h3>{item.topic}</h3>
         <div
@@ -96,8 +96,8 @@ function FeedbackContainer({ data, results, setResults, setStart, setDone }:Prop
     );
 
     return {
-      class: styles.checkoutItem,
-      component,
+      styles: styles.checkoutItem,
+      element,
       id: item.id,
     };
   });
