@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Dropdown /> should match the snapshot of initial render 1`] = `
+<div
+  className="container"
+  data-testid="Dropdown"
+>
+  <div
+    className="header"
+    data-testid="Header"
+    onClick={[Function]}
+  >
+    <h1>
+      Tile
+    </h1>
+  </div>
+  <div
+    className="body"
+    data-testid="Body"
+    style={
+      Object {
+        "display": "none",
+      }
+    }
+  >
+    <div>
+      <p>
+        Body
+      </p>
+      <button
+        type="button"
+      >
+        Back
+      </button>
+      <button
+        type="button"
+      >
+        Next
+      </button>
+    </div>
+  </div>
+</div>
+`;

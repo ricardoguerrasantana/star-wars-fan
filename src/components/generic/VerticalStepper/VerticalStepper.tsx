@@ -86,7 +86,7 @@ function VerticalStepper({ accordionStyles, dropdownIds, handleDoneClick, stepBo
     return {
       dropdown: {
         bodyComponent,
-        dropdownStyles: item.dropdown.dropdownStyles,
+        styles: item.dropdown.styles,
         headerComponent: item.dropdown.headerComponent,
         id: item.dropdown.id,
         /** Adds state control for identifying... */

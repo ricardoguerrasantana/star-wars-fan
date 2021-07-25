@@ -39,12 +39,12 @@ function Accordion({ accordionStyles, accordionItems }: Props) {
     const element = (
       <Dropdown 
         bodyComponent={dropdown.bodyComponent}
-        dropdownStyles={dropdown.dropdownStyles}
         headerComponent={dropdown.headerComponent}
         id={dropdown.id}
         key={dropdown.id}
         selectedDropdownId={dropdown.selectedDropdownId}
         setSelectedDropdownId={dropdown.setSelectedDropdownId}
+        styles={dropdown.styles}
       />
     );
 

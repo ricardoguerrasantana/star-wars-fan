@@ -65,11 +65,6 @@ function QuestionnarieContainer({ data, results, setDone, setResults }: Props) {
     },
   };
   
-  // Styles for Menu component
-  // const containerStyle = {
-  //   container: menuStyles.container
-  // };
-
   /** Styles for the helper Dropdown componet 
    * that is going to be passed down */
   const dropdownBodyStyles = {
@@ -116,7 +111,7 @@ function QuestionnarieContainer({ data, results, setDone, setResults }: Props) {
     return {
       dropdown: {
         bodyComponent,
-        dropdownStyles: {
+        styles: {
           body: questionnarieStyles.dropdownBody,
           container: questionnarieStyles.dropdownContainer,
           header: results[step] === "" ? questionnarieStyles.dropdownHeader : questionnarieStyles.disabledDropdownHeader
@@ -144,7 +139,6 @@ function QuestionnarieContainer({ data, results, setDone, setResults }: Props) {
       accordionStyles={accordionStyles}
       dropdownIds={dropdownIds}
       handleDoneClick={handleDoneClick}
-      // menuStyles={containerStyle}
       showMessage={showMessage}
       stepBodyText={stepBodyText}
       stepperItems={stepperItems}

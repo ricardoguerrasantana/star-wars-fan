@@ -85,7 +85,7 @@ describe("<Menu />", () => {
     expect(itemElements[4]).not.toHaveStyle("cursor: pointer;");
   });
 
-  it(`matches snapshot`, () => {
+  it(`should match the snapshot of initial render`, () => {
       const tree = renderer.create(<MockMenu />, ).toJSON();
       expect(tree).toMatchSnapshot();
   });

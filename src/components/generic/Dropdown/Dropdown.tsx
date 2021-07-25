@@ -9,14 +9,15 @@ log.log = console.log.bind(console);
 // Prop types
 export type Props = {
   bodyComponent: ReactNode;
-  dropdownStyles: {
+  headerComponent: ReactNode;
+  id: string;
+  styles: {
     body: string;
     container: string;
     header: string;
   };
-  headerComponent: ReactNode;
-  id: string;
-  
+  /** Set up when it is necessary to collapse 
+   * the Dropdown body from outside. */
   selectedDropdownId?: string;
   setSelectedDropdownId?: (id: string) => void;
 }
@@ -28,7 +29,7 @@ export type Props = {
  * control to hide the body if selectedDropdownId and 
  * setSelectedDropdownId props are defined from parent component 
  * as state managers. */
-function Dropdown({ bodyComponent, dropdownStyles, headerComponent, id, selectedDropdownId , setSelectedDropdownId }: Props) {
+function Dropdown({ bodyComponent, styles, headerComponent, id, selectedDropdownId , setSelectedDropdownId }: Props) {
   log("Rendering...");
 
   /** Controls whether the body is displayed or not. */
@@ -52,15 +53,20 @@ function Dropdown({ bodyComponent, dropdownStyles, headerComponent, id, selected
   }
 
   return (
-    <div className={dropdownStyles.container} >
+    <div 
+      className={styles.container} 
+      data-testid="Dropdown"
+    >
       <div 
-        className={dropdownStyles.header}
+        className={styles.header}
+        data-testid="Header"
         onClick={handleClick}
       >
         {headerComponent}
       </div>
       <div 
-        className={dropdownStyles.body}
+        className={styles.body}
+        data-testid="Body"
         style={displayBody ? undefined : {display: "none"}} 
       >
         {bodyComponent}
